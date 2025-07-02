@@ -169,6 +169,10 @@ Default: 'WWW-Authenticate,Server-Authorization'
 
 Used to disable cookie-validation on hapi.js-server.
 
+#### disableHttp
+
+Disables HTTP event processing. Can also be set via the `DISABLE_HTTP` environment variable.
+
 #### dockerHost
 
 The host name of Docker.<br />

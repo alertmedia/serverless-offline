@@ -27,6 +27,10 @@ export default {
     type: "boolean",
     usage: "Used to disable cookie-validation on hapi.js-server.",
   },
+  disableHttp: {
+    type: "boolean",
+    usage: "Disables HTTP event processing.",
+  },
   dockerHost: {
     type: "string",
     usage: "The host name of Docker. Default: localhost.",
