@@ -92,7 +92,11 @@ export default class ServerlessOffline {
       eventModules.push(this.#createAlb(albEvents))
     }
 
-    if ((httpApiEvents.length > 0 || httpEvents.length > 0) && !this.#options.disableHttp && !process.env.DISABLE_HTTP) {
+    if (
+      (httpApiEvents.length > 0 || httpEvents.length > 0) &&
+      !this.#options.disableHttp &&
+      !process.env.DISABLE_HTTP
+    ) {
       eventModules.push(this.#createHttp([...httpApiEvents, ...httpEvents]))
     }
 

@@ -1,7 +1,5 @@
 import assert from "node:assert"
-import generateHapiPath, {
-  generateAlbHapiPath,
-} from "../generateHapiPath.js"
+import generateHapiPath, { generateAlbHapiPath } from "../generateHapiPath.js"
 
 const serverless = {
   service: {

@@ -47,7 +47,7 @@ export function generateAlbHapiPath(path, options, serverless) {
   // match a single segment. A global-regex replace avoids re-matching the
   // '*' we just inserted inside the substitution.
   let albWildcardIndex = 0
-  hapiPath = hapiPath.replace(/\*/g, () => {
+  hapiPath = hapiPath.replaceAll("*", () => {
     const placeholder = `{${albWildcardIndex}*}`
     albWildcardIndex += 1
     return placeholder
