@@ -43,7 +43,10 @@ export function generateAlbHapiPath(path, options, serverless) {
   }
 
   for (let i = 0; hapiPath.includes("*"); i += 1) {
-    hapiPath = hapiPath.replace("*", `{${i}}`)
+    // Translate ALB '*' wildcard to Hapi catchall '{N*}' so multi-segment
+    // paths (e.g. /locations/groups/76/346728) match. '{N}' would only match
+    // a single segment.
+    hapiPath = hapiPath.replace("*", `{${i}*}`)
   }
 
   return hapiPath
