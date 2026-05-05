@@ -1,4 +1,4 @@
-service: generated-api-key-tests
+service: docker-nodejs24-x-test
 
 configValidationMode: error
 deprecationNotificationMode: error
@@ -7,20 +7,24 @@ plugins:
   - ../../../../../src/index.js
 
 provider:
-  architecture: arm64
+  architecture: x86_64
   deploymentMethod: direct
   memorySize: 1024
   name: aws
   region: us-east-1
-  runtime: nodejs20.x
+  runtime: nodejs24.x
   stage: dev
   versionFunctions: false
 
+custom:
+  serverless-offline:
+    noTimeout: true
+    useDocker: true
+
 functions:
-  foo:
+  hello:
     events:
       - http:
           method: get
-          path: /foo
-          private: true
-    handler: src/index.default
+          path: hello
+    handler: handler.hello

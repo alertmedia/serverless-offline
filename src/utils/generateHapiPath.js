@@ -42,9 +42,16 @@ export function generateAlbHapiPath(path, options, serverless) {
     hapiPath = hapiPath.slice(0, -1)
   }
 
-  for (let i = 0; hapiPath.includes("*"); i += 1) {
-    hapiPath = hapiPath.replace("*", `{${i}}`)
-  }
+  // Translate ALB '*' wildcards to Hapi catchall '{N*}' so multi-segment
+  // paths (e.g. /locations/groups/76/346728) match. Plain '{N}' would only
+  // match a single segment. A global-regex replace avoids re-matching the
+  // '*' we just inserted inside the substitution.
+  let albWildcardIndex = 0
+  hapiPath = hapiPath.replaceAll("*", () => {
+    const placeholder = `{${albWildcardIndex}*}`
+    albWildcardIndex += 1
+    return placeholder
+  })
 
   return hapiPath
 }
